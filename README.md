@@ -127,39 +127,47 @@ La lecture des données au format tabulé est l'occasion de se familliariser ave
 La fonction `read_csv` accepte différents [arguments](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_csv.html) de format de données très utiles.
 
 ```python
-df = pandas.read_csv()
+df = pandas.read_csv('data/TCL_wt1.tsv')
 ```
 
 Quel est le type de l'objet `df`?
 ```
-
+data frame
 ```
 
 ##### Descriptions d'une table de données
 Que permettent les méthodes suivantes?
 ###### df.shape
 ```
+taille data frame (row * cols)
 ```
 ###### df.head()
 ```
+see first 5 lines 
 ```
 ###### df.tail()
 ```
+see last 5 lines
 ```
 ###### df.columns
 ```
+get columns names
 ```
 ###### df.dtypes
 ```
+get data types
 ```
 ###### df.info
 ```
+see metadata (types, NA values, colnames)
 ```
 ###### df.describe()
 ```
+info + statistics on num var
 ```
 ###### df.dropna()
 ```
+delete rows with NA values
 ```
 
 ##### Accès aux éléments d'une table de données
@@ -179,17 +187,17 @@ On peut accéder aux valeurs du DataFrame via des indices ou plages d'indice. La
 Il y a différentes manières de le faire, l'utilisation de `.iloc[slice_ligne,slice_colonne]` constitue une des solutions les plus simples. N'oublions pas que shape permet d'obtenir les dimensions (lignes et colonnes) du DataFrame.
 ###### Acceder aux cinq premières lignes de toutes les colonnes
 ```python
-
+values.iloc[1:5] 
 ```
 
 ###### Acceder à toutes les lignes de la dernière colonne
 ```python
-
+values.iloc[:,-1] 
 ```
 
 ###### Acceder aux cinq premières lignes des colonnes 0, 2 et 3
 ```python
-
+df.iloc[1:5,[0,2,3]]    #5  cols 0,2,3
 ```
 
 ##### Conversion de type
@@ -241,8 +249,8 @@ df.loc[ df['Gene Symbol'].isin(['fadR', 'arcA'] ) ]
 
 ##### 3. A partir de cette échantillon de ratio d'abondance,  estimez la moyenne $\mu$ et l'ecart-type $\sigma$ d'une loi normale.
 ```
-
-
+df.describe()
+## mean = -0.67   std=0.47
 ```
 
 ##### 4. Superposez la densité de probabilité de cette loi sur l'histogramme. Attention, la densité de probabilité devra être mis à l'echelle de l'histogramme (cf ci-dessous)
@@ -260,11 +268,11 @@ ax.plot(x, norm.pdf(x, mu, sigma)*scale) # compute theoritical PDF and draw it
 
 ![Histogramme à inserez ici](histogram_log2FC.png "Title")
 
+
 ##### 5. Quelles remarques peut-on faire à l'observation de l'histogramme et de la loi théorique?
 
 ```
-
-
+ne suit pas une distribution normale
 ```
 
 #### Construction d'un volcano plot
@@ -287,8 +295,7 @@ Nous allons implementer une approche ORA (Over Representation Analysis) naive.
 
 Quelles sont leurs identifiants UNIPROT ?
 ``` 
-
-
+ac_l=df.loc[col,'Accession']
 
 ```
 
