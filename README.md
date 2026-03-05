@@ -266,7 +266,7 @@ scale = len(_)*dx # scale accordingly
 ax.plot(x, norm.pdf(x, mu, sigma)*scale) # compute theoritical PDF and draw it
 ```
 
-![Histogramme à inserez ici](histogram_log2FC.png "Title")
+![Histogramme](img/hist2.png "Histogramme et densité de probabilité")
 
 
 ##### 5. Quelles remarques peut-on faire à l'observation de l'histogramme et de la loi théorique?
@@ -285,7 +285,7 @@ Sont condidérées comme surabondantes les proteines remplissant ces deux critè
 * $\text{Log}_2(\text{abundance ratio})\gt\mu%2B\sigma$
 * $\text{p-value}<0.001$
 
-![Volcano plot + quadrant à inserez ici](histogram_log2FC.png "Title")
+![Volcano plot ](img/scatterplot.png "Volcano Plot")
 
 ### Analyse Fonctionelle de pathway
 
@@ -364,10 +364,10 @@ Completer le tableau ci-dessous avec les quantités vous semblant adéquates pou
 
 | Symboles | Paramètres | Quantités Biologiques |
 | --- | --- | --- |
-| k | nombre de succès observés| |
-| K | nombre de succès possibles| |
-| n | nombre d'observations| |
-| N | nombre d'elements observables| |
+| k | nombre de succès observés| | #ac prot surab. du GO terme
+| K | nombre de succès possibles| | #ac prot du GO terme
+| n | nombre d'observations| |  #tirages (ici < nb prot surab. observées)
+| N | nombre d'elements observables| | #lignes de df
 
 #### 4. Calcul de l'enrichissement en fonctions biologiques
 
@@ -375,11 +375,26 @@ A l'aide du contenu de `data/EColiK12_GOcounts.json` parametrez la loi hypergeom
 de chaque terme GO portés par les protéines surabondantes. Vous reporterez ces données dans le tableau ci-dessous
 
 | identifiant GO | définition | occurence | pvalue|
-|---|---|---|---|
-|   |   |   |   |
+    GO:0009279 | C:cell outer membrane | 20 | 0.0
+    GO:0045203 | C:integral component of cell outer membrane | 6 | 0.0
+    GO:0046930 | C:pore complex | 6 | 0.0
+    GO:0015288 | F:porin activity | 6 | 0.0
+    GO:0034220 | P:ion transmembrane transport | 5 | 0.0
+    GO:0038023 | F:signaling receptor activity | 4 | 0.0
+    GO:0015344 | F:siderophore uptake transmembrane transporter activity | 4 | 0.0
+    GO:0031230 | C:intrinsic component of cell outer membrane | 4 | 0.0
+    GO:1990063 | C:Bam protein complex | 3 | 0.0001
+    GO:0051205 | P:protein insertion into membrane | 3 | 0.0002
+    GO:0016458 | P:gene silencing | 2 | 0.0003
+    GO:0001618 | F:virus receptor activity | 2 | 0.0003
+    GO:0022834 | F:ligand-gated channel activity | 2 | 0.0003
+    GO:0005216 | F:ion channel activity | 2 | 0.0003
+    GO:0047485 | F:protein N-terminus binding | 2 | 0.0003
+    GO:0019904 | F:protein domain specific binding | 3 | 0.0009
+
 
 Quelle interpretation biologique faites-vous de cet enrichissement en termes GO ?
-
+On peut rejeter H0 pour les termes GO les plus représentés chez les protéines surabondantes.
 
 ### Analyse des interactions répertoriées dans STRING
 
@@ -399,12 +414,10 @@ Valider le mapping produit par STRING en clickant sur 'Continue'.
 Combien d'interactions contient ce réseau ?
 
 ```
-
-
-
+Le réseau contient 136 interractions
 
 ```
-
+![Img Reseau](img/network.png "Réseau protéines STRING")
 
 Faire varier les paramètres de visualisation du réseau dans 'Settings' pour afficher le réseau fonctionnel
 ou physique avec différents indices de confiance.
@@ -415,10 +428,13 @@ Combien d'interactions sont supportées par chaque source ('Textmining', 'Experi
 
 Hint: l'onglet Analysis, donne accès aux nombre des interactions du réseau.
 ```
-
-
-
-
+Neighborhood :0
+Gene Fusion : 0
+Co-occurence: 8
+Co-expression: 15
+Database: 18
+Experiments: 18
+Textmining: 112
 ```
 
 #### Analyse du réseau des protéines sur-exprimées dans le contexte du réseau global.
@@ -427,10 +443,9 @@ Consulter la rubrique 'Network Stats' dans l'onglet Analysis.
 
 Que peut-on en conclure sur les interactions de ce petit ensemble de protéines ?
 ```
-
-
-
-
+le degré moyen d'un noeud est de 8.2. Le clustering coefficient de 0.7. 
+Ce network est très dense et contient significativement plus de noeuds qu'attendus.
+Les protéines sont donc très inter-liées.
 ```
 
 Afin de replacer ces protéines dans le contexte du réseau d'interaction global de E. coli, 
@@ -438,21 +453,19 @@ ajouter les interacteurs de la première et de la deuxième couche.
 
 Que pouvez-vous en déduire sur les mécanismes activés par la présente de tétracycline ?
 ```
-
-
-
-
+En rajoutant ces interractions le network est beaucoup plus dense!
 ```
+![Img Reseau 2](img/network2.png "Réseau protéines avec interractions 1e&2e couche")
+
+
 #### Analyse de sur-représentation des termes GO
 
 Consulter l'analyse de sur-représention des termes GO présents dans l'onglet 'Analysis'.
 Est-ce cohérent avec votre analyse précédente ?
 
 ```
-
-
-
-
+Les termes GO qui apparaissent sont liés aux membranes des cellules, à la porosité et aux enveloppes. 
+C'est bien cohérent avec ce qui a été trouvé auparavant.
 ```
 
 
