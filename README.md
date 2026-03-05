@@ -364,10 +364,10 @@ Completer le tableau ci-dessous avec les quantités vous semblant adéquates pou
 
 | Symboles | Paramètres | Quantités Biologiques |
 | --- | --- | --- |
-| k | nombre de succès observés| | #ac prot surab. du GO terme
-| K | nombre de succès possibles| | #ac prot du GO terme
-| n | nombre d'observations| |  #tirages (ici < nb prot surab. observées)
-| N | nombre d'elements observables| | #lignes de df
+| k | nombre de succès observés| #ac prot surab. du GO terme | 
+| K | nombre de succès possibles| #ac prot du GO terme | 
+| n | nombre d'observations| #tirages (ici < nb prot surab. observées) |  
+| N | nombre d'elements observables| #lignes de df | 
 
 #### 4. Calcul de l'enrichissement en fonctions biologiques
 
